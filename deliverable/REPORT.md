@@ -1,6 +1,7 @@
 # Práctica 2: Procesamiento de datos almacenados en HBase
 
-**Curso:** Ciencia de Datos Escalable · **Entorno:** Amazon EMR con HBase · **Autor:** Raymond Negron
+**Curso:** Ciencia de Datos Escalable · **Entorno:** Amazon EMR con HBase · **Autor:** Raymond Negron \
+**Repositorio:** https://github.com/raymond1242/MAE-CDE-hbase
 
 > Las tablas de resultados de este informe se generan a partir de los archivos de `results/` con
 > `python3 src/build_report.py`. Esos archivos se obtuvieron en el clúster EMR siguiendo
@@ -237,92 +238,52 @@ Otras consultas de HBase y filas devueltas:
 
 ### 6.1 ¿Qué parte del trabajo realiza HBase y qué parte realiza Python?
 
-**HBase** se encarga del almacenamiento y de la recuperación. Guarda las celdas de forma persistente y
-distribuida (WAL y MemStore para las escrituras, HFiles sobre HDFS), las organiza por clave de fila ordenada
-y por familia de columnas, y reparte las filas en regiones atendidas por los RegionServers. Además resuelve
-las operaciones de acceso: `put`, `get`, `scan`, `count`, la proyección de columnas y los filtros del lado
-del servidor. Para HBase todo valor es una secuencia de bytes: no sabe que `salary` es un número ni que
-`LIMA` y `Lima` son la misma ciudad, y no ofrece agregaciones como `GROUP BY`, `AVG`, `MIN` o `MAX`.
+**HBase almacena y recupera los datos.** Guarda las filas distribuidas en el clúster, ordenadas por clave
+y agrupadas en familias de columnas. Además responde a `put`, `get`, `scan` y `count`, incluidos los filtros
+y la selección de columnas. Sin embargo, trata cada valor como bytes: no sabe que `salary` es un número ni
+que `LIMA` y `Lima` son la misma ciudad, y no calcula promedios ni agrupaciones.
 
-**Python** realiza el procesamiento analítico. Se conecta a HBase (happybase vía Thrift), decodifica los
-bytes, convierte los salarios a números, decide qué hacer con los valores faltantes e inválidos, normaliza
-las categorías, agrupa, calcula conteos, porcentajes, promedio, mínimo y máximo, aplica el umbral de
-representatividad y genera las tablas. La sección 4.7 lo muestra con datos: el conteo exacto de HBase para
-`Lima` difiere del conteo normalizado en Python, y el filtro de HBase `salary > 90000` devuelve textos como
-`N/A` y omite salarios de seis cifras porque compara de forma lexicográfica.
+**Python hace el análisis.** Lee las filas desde HBase (happybase vía Thrift), convierte los salarios a
+números, trata los valores faltantes e inválidos, normaliza las categorías y calcula conteos, porcentajes,
+promedio, mínimo y máximo. La sección 4.7 lo muestra con dos ejemplos:
+
+- El filtro exacto de HBase cuenta 64 empleados en Lima, mientras que Python cuenta 67.
+- El filtro `salary > 90000` de HBase devuelve textos como `N/A`, porque compara texto y no números.
 
 ### 6.2 ¿Por qué `get` es adecuado para recuperar una fila conocida y `scan` para recorrer varias filas?
 
-`get` recibe la clave exacta de una fila. HBase usa la tabla `hbase:meta` para ubicar la región que la
-contiene y lee solo esa fila de ese RegionServer. El costo es prácticamente constante, sin importar el
-tamaño de la tabla, por eso es la operación adecuada para "dame el empleado `E0042`".
+**`get` lee una sola fila a partir de su clave exacta.** HBase va directo a esa fila sin recorrer la
+tabla, así que es la operación adecuada cuando se conoce la clave, por ejemplo `get 'emp', 'E0042'`.
 
-`scan` recorre un rango de claves. Las filas están ordenadas lexicográficamente por clave, así que un
-`scan` con `STARTROW`/`STOPROW` lee un tramo contiguo y uno sin límites recorre la tabla completa. Devuelve
-las filas en lotes a través de un cursor en el servidor, lo que permite procesar muchas filas sin una
-llamada por fila y aplicar filtros y proyecciones antes de enviar los datos. Usar `get` en un bucle para
-miles de filas implicaría una llamada de red por fila y exigiría conocer todas las claves de antemano. Por
-eso las claves se diseñaron con ceros a la izquierda (`E0001`…`E0300`): así el orden lexicográfico coincide
-con el numérico y los rangos de `scan` tienen sentido.
+**`scan` recorre varias filas:** toda la tabla o un rango de claves (`STARTROW`/`STOPROW`), aprovechando
+que las filas se guardan ordenadas por clave. Devuelve los resultados en lotes y permite filtrar y elegir
+columnas. Por eso es la operación adecuada para procesar muchas filas o cuando no se conocen las claves.
+Hacer un `get` por cada fila sería mucho más lento, con una petición por fila, y exigiría conocer todas
+las claves de antemano.
 
 ### 6.3 ¿Qué limitaciones tendría recuperar toda una tabla grande para procesarla en un único programa?
 
-- **Memoria:** si el programa guarda todas las filas antes de procesarlas, como hace esta práctica con 300
-  registros, el tamaño de la tabla queda limitado por la RAM de una sola máquina.
-- **Red y cuello de botella:** todos los datos pasan por un solo cliente y un solo servidor Thrift, que
-  agrega una capa de serialización. El tiempo crece linealmente con el volumen.
-- **Sin paralelismo:** la tabla está repartida en regiones y nodos, pero un único programa las lee una
-  tras otra y desaprovecha el clúster.
-- **Fragilidad:** un `scan` largo puede superar el tiempo de vida del scanner en el servidor (lease
-  timeout) si el cliente procesa lento, y un fallo a mitad obliga a empezar de nuevo.
-- **Impacto operativo y consistencia:** un recorrido completo carga a los RegionServers y compite con otras
-  aplicaciones. Además, HBase garantiza consistencia por fila, no una foto consistente de toda la tabla
-  mientras se escribe en ella.
-
-Algunas mitigaciones dentro de un solo programa son pedir solo las columnas necesarias, filtrar en el
-servidor, calcular agregados de forma incremental (en streaming) en lugar de guardar todas las filas y
-ajustar el tamaño de lote. Aun así, el límite de fondo es usar una sola máquina.
+- **Memoria:** todas las filas tendrían que caber en la RAM de una sola máquina.
+- **Tiempo:** los datos llegan de forma secuencial a través de un único cliente, así que el tiempo crece
+  con el tamaño de la tabla.
+- **Sin paralelismo:** los datos están repartidos en el clúster, pero un solo programa no aprovecha esa
+  distribución.
+- **Fallos:** si el proceso se interrumpe a mitad de una lectura larga, hay que empezar de nuevo.
+- **Carga sobre HBase:** un recorrido completo compite con otras aplicaciones que usan la misma tabla.
 
 ### 6.4 ¿Cómo cambiaría la solución con millones de registros procesados de forma distribuida? Papel de Apache Spark
 
-Con millones de registros, el procesamiento debe ir a los datos en lugar de traer los datos a un programa.
-**Apache Spark**, que se agrega como aplicación al mismo clúster EMR, lee HBase en paralelo creando una
-partición por región, mediante `TableInputFormat` o el conector `hbase-spark`. Sus ejecutores corren en los
-nodos del clúster, cerca de los RegionServers, y le envían a HBase la proyección de columnas y los filtros
-(pushdown). La limpieza (conversión numérica, normalización de ciudades) se aplica en paralelo sobre cada
-partición. Las agregaciones (`groupBy("city").agg(count, avg, min, max)`) se calculan primero de forma
-parcial en cada ejecutor y luego se combinan tras un shuffle, de modo que al driver solo llega el resultado
-final, que es pequeño. Spark también tolera fallos: si un ejecutor cae, recalcula solo las particiones
-perdidas.
+Con millones de registros, el análisis debe repartirse entre varias máquinas en lugar de concentrarse en
+un solo programa. **Apache Spark**, que puede instalarse en el mismo clúster EMR, cumpliría ese papel:
 
-Esquema ilustrativo (no forma parte de la entrega ejecutada):
+- **Lectura en paralelo:** lee la tabla de HBase dividida en particiones, una por región, y varios nodos las
+  procesan a la vez.
+- **Procesamiento distribuido:** la conversión de salarios, la normalización de ciudades y los agregados
+  (`groupBy("city")` con conteo, promedio, mínimo y máximo) se ejecutan en paralelo. Al programa principal
+  solo llega el resultado final, que es pequeño.
+- **Tolerancia a fallos:** si un nodo falla, Spark repite solo la parte perdida, no todo el proceso.
 
-```python
-from pyspark.sql import SparkSession, functions as F
-
-spark = SparkSession.builder.appName("emp-indicators").getOrCreate()
-emp = (spark.read.format("org.apache.hadoop.hbase.spark")
-       .option("hbase.table", "emp")
-       .option("hbase.columns.mapping",
-               "row_key STRING :key, city STRING personal:city, "
-               "designation STRING professional:designation, salary STRING professional:salary")
-       .load())
-clean = (emp
-         .withColumn("city", F.initcap(F.trim("city")))
-         .withColumn("salary_num", F.when(F.trim("salary").rlike(r"^\d+(\.\d+)?$"),
-                                          F.trim("salary").cast("double")))
-         .withColumn("salary_num", F.when(F.col("salary_num") > 0, F.col("salary_num"))))
-(clean.groupBy("city")
-      .agg(F.count("*").alias("employees"), F.avg("salary_num").alias("avg_salary"),
-           F.min("salary_num").alias("min_salary"), F.max("salary_num").alias("max_salary"))
-      .write.mode("overwrite").csv("s3://<bucket>/emp-indicators/"))
-```
-
-Hay alternativas que reducen la carga sobre HBase: leer un **snapshot** de la tabla directamente desde
-HDFS o S3 (`TableSnapshotInputFormat`) sin pasar por los RegionServers, o exportar periódicamente a Parquet
-en S3 y analizar con Spark o Athena. Si se necesitan agregaciones del lado del servidor sin mover datos,
-existen los coprocesadores de HBase o Apache Phoenix (SQL sobre HBase). En todos los casos se mantiene la
-misma división de trabajo: HBase almacena y sirve los datos, y un motor distribuido hace el análisis.
+HBase seguiría almacenando y sirviendo los datos. Spark reemplazaría a Python como motor de procesamiento.
 
 ## 7. Reproducibilidad
 

@@ -1,0 +1,10 @@
+# Create table 'emp' with the two column families required by the assignment.
+# Safe to re-run: if the table already exists it is left untouched
+# (this project never runs drop or truncate).
+#
+# Run on the EMR primary node, from the repository root:
+#   hbase shell -n hbase/01_create_table.hbase
+
+create 'emp', {NAME => 'personal', VERSIONS => 1}, {NAME => 'professional', VERSIONS => 1} unless exists 'emp'
+describe 'emp'
+exit

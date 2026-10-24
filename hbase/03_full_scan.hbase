@@ -1,0 +1,9 @@
+# Full table scan (Activity A.2: scan 'emp').
+# Its output is both evidence and the input of the fallback reader
+# (python3 src/analyze.py --source shell --scan-file results/raw/scan_emp.txt).
+#
+# Run from the repository root:
+#   hbase shell -n hbase/03_full_scan.hbase 2>/dev/null > results/raw/scan_emp.txt
+
+scan 'emp'
+exit

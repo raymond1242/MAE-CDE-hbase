@@ -1,0 +1,71 @@
+# Activity B - What HBase can answer by itself.
+#
+# HBase stores and retrieves rows: it can filter and count on the server, but it
+# has no GROUP BY, AVG, MIN or MAX, and it compares raw bytes, not numbers or
+# normalized text. The final indicators are computed in Python (src/analyze.py).
+# These queries show both what HBase can do and where its limits are.
+#
+# Run from the repository root and keep the output as evidence:
+#   hbase shell -n hbase/04_activity_b_queries.hbase 2>/dev/null | tee results/raw/04_activity_b_queries.txt
+
+# ---------------------------------------------------------------------------
+# Q1. Employees per city: one server-side filtered count per city.
+# The last two arguments (true, true) mean "skip rows without personal:city"
+# and "test only the latest version". Without the first one, rows with no
+# city would pass the filter and be counted for every city.
+# ---------------------------------------------------------------------------
+count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Lima', true, true)"}
+count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Bogota', true, true)"}
+count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Santiago', true, true)"}
+count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Quito', true, true)"}
+count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Buenos Aires', true, true)"}
+count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Madrid', true, true)"}
+
+# Limitation 1: the comparison is exact, byte by byte, so 'LIMA' and ' lima '
+# were not counted as Lima above. A case-insensitive substring match finds them:
+scan 'emp', {COLUMNS => ['personal:city'], FILTER => "ValueFilter(=, 'substring:lima')"}
+# Limitation 2: HBase cannot list the distinct cities; you must know them
+# beforehand or read the whole column and deduplicate it on the client.
+
+# ---------------------------------------------------------------------------
+# Q2. Percentage per city: HBase does no arithmetic over results. It only gives
+# the total; percentage = count(city) / count(total) * 100 is done in Python.
+# ---------------------------------------------------------------------------
+count 'emp'
+
+# ---------------------------------------------------------------------------
+# Q3. Average, minimum and maximum salary: HBase only returns the raw values.
+# ---------------------------------------------------------------------------
+scan 'emp', {COLUMNS => ['professional:salary'], LIMIT => 10}
+
+# Salaries are stored as text, so comparison filters are lexicographic, not
+# numeric. This "salary > 90000" filter also returns 'N/A' and 'pending'
+# (letters sort after digits) and misses values such as '105000' ('1' < '9').
+scan 'emp', {COLUMNS => ['professional:salary'], FILTER => "SingleColumnValueFilter('professional', 'salary', >, 'binary:90000', true, true)"}
+
+# ---------------------------------------------------------------------------
+# Q4. Employees per designation: same approach as Q1.
+# ---------------------------------------------------------------------------
+count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Data Analyst', true, true)"}
+count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Software Engineer', true, true)"}
+count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Administrative Assistant', true, true)"}
+count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Data Scientist', true, true)"}
+count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Accountant', true, true)"}
+count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Project Manager', true, true)"}
+count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Director', true, true)"}
+
+# ---------------------------------------------------------------------------
+# Q5. City with the highest average salary: needs numeric conversion, grouping
+# and averaging, none of which the shell offers. (HBase's
+# AggregateImplementation coprocessor can only sum/average cells encoded as
+# 8-byte longs, not numbers stored as text.) Computed in Python.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# get vs scan (conceptual question 2).
+# get: one known row, located directly by its key.
+get 'emp', 'E0042'
+# scan: a range of rows. Row keys are sorted, so STARTROW/STOPROW only reads
+# the rows in [E0100, E0105) instead of the whole table.
+scan 'emp', {STARTROW => 'E0100', STOPROW => 'E0105'}
+exit

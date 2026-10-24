@@ -1,0 +1,25 @@
+# Activity A - Data verification.
+#
+# Run from the repository root and keep the output as evidence:
+#   hbase shell -n hbase/02_verify.hbase 2>/dev/null | tee results/raw/02_verify.txt
+
+# A.1 Table structure. describe lists the column families and their settings
+# (VERSIONS, TTL, compression...). Qualifiers such as name or salary do NOT
+# appear here: HBase has no fixed schema below the column family.
+describe 'emp'
+
+# A.2 Records. count scans the table and reports the number of rows.
+count 'emp'
+# First rows (the full scan is exported with 03_full_scan.hbase).
+scan 'emp', {LIMIT => 3}
+# get reads one row directly by its key.
+get 'emp', 'E0001'
+
+# A.3 Required columns. A count restricted to one column only counts the rows
+# that HAVE that cell; the difference from the total is the number of rows
+# where that value is missing.
+count 'emp', {COLUMNS => ['personal:name']}
+count 'emp', {COLUMNS => ['personal:city']}
+count 'emp', {COLUMNS => ['professional:designation']}
+count 'emp', {COLUMNS => ['professional:salary']}
+exit

@@ -1,0 +1,20 @@
+hbase:001:0> scan 'fx'
+ROW  COLUMN+CELL
+ T0001 column=personal:city, timestamp=2026-10-24T04:28:20.268, value=Lima
+ T0001 column=personal:name, timestamp=2026-10-24T04:28:20.262, value=Ana Torres
+ T0001 column=professional:designation, timestamp=2026-10-24T04:28:20.273, value=Data Analyst
+ T0001 column=professional:salary, timestamp=2026-10-24T04:28:20.279, value=41000
+ T0002 column=personal:city, timestamp=2026-10-24T04:28:20.291, value= lima 
+ T0002 column=personal:name, timestamp=2026-10-24T04:28:20.287, value=Luis Diaz
+ T0002 column=professional:designation, timestamp=2026-10-24T04:28:20.295, value=Accountant
+ T0003 column=personal:city, timestamp=2026-10-24T04:28:20.302, value=Bogot\xC3\xA1
+ T0003 column=personal:name, timestamp=2026-10-24T04:28:20.298, value=Peter O'Neil, Jr.
+ T0003 column=professional:designation, timestamp=2026-10-24T04:28:20.306, value=Director
+ T0003 column=professional:salary, timestamp=2026-10-24T04:28:20.309, value=99000
+ T0004 column=personal:city, timestamp=2026-10-24T04:28:20.324, value=Quito
+ T0004 column=personal:name, timestamp=2026-10-24T04:28:20.318, value=Rosa Vega
+ T0004 column=personal:nickname, timestamp=2026-10-24T04:28:20.331, value=rosi
+ T0004 column=professional:salary, timestamp=2026-10-24T04:28:20.328, value=N/A
+4 row(s)
+Took 0.1881 seconds
+hbase:002:0> exit

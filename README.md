@@ -35,6 +35,7 @@ The full tables are in [results/](results/). The interpretation and the conceptu
 | Results table with the requested indicators | Section 4 of the [report](deliverable/REPORT.md); CSV files in [results/](results/) |
 | Interpretation (5–10 lines) | Section 5 of the [report](deliverable/REPORT.md) |
 | Answers to the conceptual questions | Section 6 of the [report](deliverable/REPORT.md) |
+| Generative AI usage log (prompts used) | [deliverable/AI_USAGE.md](deliverable/AI_USAGE.md) |
 
 ## How the data is retrieved from HBase
 
@@ -72,7 +73,7 @@ Both retrieval methods were run on the same table, and they produce byte-identic
 │   └── 04_activity_b_queries.hbase
 ├── data/                        # synthetic dataset and data dictionary
 ├── results/                     # outputs of the EMR run (CSV tables + raw HBase shell evidence)
-├── deliverable/REPORT.md        # report (Spanish)
+├── deliverable/                 # REPORT.md and AI_USAGE.md (Spanish), each with its PDF
 ├── docs/                        # EMR console guide, step-by-step runbook, HBase command reference
 ├── infra/setup_primary.sh       # prepares the EMR primary node (Python venv, Thrift check)
 ├── local/                       # optional: HBase 2.6 in Docker for a free local rehearsal

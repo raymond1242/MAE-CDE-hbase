@@ -1,0 +1,72 @@
+hbase:001:0> # Activity A - Data verification.
+hbase:002:0> #
+hbase:003:0> # Run from the repository root and keep the output as evidence:
+hbase:004:0> #   hbase shell -n hbase/02_verify.hbase 2>/dev/null | tee results/raw/02_verify.txt
+hbase:005:0> 
+hbase:006:0> # A.1 Table structure. describe lists the column families and their settings
+hbase:007:0> # (VERSIONS, TTL, compression...). Qualifiers such as name or salary do NOT
+hbase:008:0> # appear here: HBase has no fixed schema below the column family.
+hbase:009:0> describe 'emp'
+Table emp is ENABLED
+emp, {TABLE_ATTRIBUTES => {METADATA => {'hbase.store.file-tracker.impl' => 'DEFAULT'}}}
+COLUMN FAMILIES DESCRIPTION
+{NAME => 'personal', INDEX_BLOCK_ENCODING => 'NONE', VERSIONS => '1', KEEP_DELETED_CELLS => 'FALSE', DATA_BLOCK_ENCODING => 'NONE', TTL => 'FOREVER', MIN_VERSIONS => '0', REPLICATION_SCOPE => '0', BLOOMFILTER => 'ROW', IN_MEMORY => 'false', COMPRESSION => 'NONE', BLOCKCACHE => 'true', BLOCKSIZE => '65536 B (64KB)'}
+
+{NAME => 'professional', INDEX_BLOCK_ENCODING => 'NONE', VERSIONS => '1', KEEP_DELETED_CELLS => 'FALSE', DATA_BLOCK_ENCODING => 'NONE', TTL => 'FOREVER', MIN_VERSIONS => '0', REPLICATION_SCOPE => '0', BLOOMFILTER => 'ROW', IN_MEMORY => 'false', COMPRESSION => 'NONE', BLOCKCACHE => 'true', BLOCKSIZE => '65536 B (64KB)'}
+
+2 row(s)
+Quota is disabled
+Took 0.6275 seconds
+hbase:010:0> 
+hbase:011:0> # A.2 Records. count scans the table and reports the number of rows.
+hbase:012:0> count 'emp'
+300 row(s)
+Took 0.1517 seconds
+=> 300
+hbase:013:0> # First rows (the full scan is exported with 03_full_scan.hbase).
+hbase:014:0> scan 'emp', {LIMIT => 3}
+ROW  COLUMN+CELL
+ E0001 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Quito
+ E0001 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Sofia Gonzalez
+ E0001 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Analyst
+ E0001 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=33800
+ E0002 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Quito
+ E0002 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Luis Chavez
+ E0002 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Scientist
+ E0002 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=61300
+ E0003 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Bogota
+ E0003 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Fernando Ruiz
+ E0003 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Analyst
+ E0003 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=34200
+3 row(s)
+Took 0.0399 seconds
+hbase:015:0> # get reads one row directly by its key.
+hbase:016:0> get 'emp', 'E0001'
+COLUMN  CELL
+ personal:city timestamp=2026-10-24T06:25:36.361, value=Quito
+ personal:name timestamp=2026-10-24T06:25:36.361, value=Sofia Gonzalez
+ professional:designation timestamp=2026-10-24T06:25:36.361, value=Data Analyst
+ professional:salary timestamp=2026-10-24T06:25:36.361, value=33800
+1 row(s)
+Took 0.0213 seconds
+hbase:017:0> 
+hbase:018:0> # A.3 Required columns. A count restricted to one column only counts the rows
+hbase:019:0> # that HAVE that cell; the difference from the total is the number of rows
+hbase:020:0> # where that value is missing.
+hbase:021:0> count 'emp', {COLUMNS => ['personal:name']}
+300 row(s)
+Took 0.0371 seconds
+=> 300
+hbase:022:0> count 'emp', {COLUMNS => ['personal:city']}
+297 row(s)
+Took 0.0193 seconds
+=> 297
+hbase:023:0> count 'emp', {COLUMNS => ['professional:designation']}
+298 row(s)
+Took 0.0119 seconds
+=> 298
+hbase:024:0> count 'emp', {COLUMNS => ['professional:salary']}
+292 row(s)
+Took 0.0125 seconds
+=> 292
+hbase:025:0> exit

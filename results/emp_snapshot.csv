@@ -1,0 +1,301 @@
+row_key,name,city,designation,salary
+E0001,Sofia Gonzalez,Quito,Data Analyst,33800
+E0002,Luis Chavez,Quito,Data Scientist,61300
+E0003,Fernando Ruiz,Bogota,Data Analyst,34200
+E0004,Paula Cruz,Lima,Data Analyst,41600
+E0005,Jose Herrera,Lima,Administrative Assistant,25000
+E0006,Carlos Sanchez,Buenos Aires,Data Scientist,57100
+E0007,Ana Gomez,Madrid,Software Engineer,58200
+E0008,Isabel Morales,Buenos Aires,Data Scientist,66700
+E0009,Paula Flores,Santiago,Director,98000
+E0010,Ricardo Sanchez,Buenos Aires,Data Scientist,67800
+E0011,Valeria Martinez,Quito,Data Analyst,33200
+E0012,Andres Mendoza,Buenos Aires,Project Manager,67200
+E0013,Elena Torres,Buenos Aires,Data Analyst,38900
+E0014,Javier Perez,Quito,Data Scientist,46100
+E0015,Miguel Vega,Santiago,Software Engineer,58400
+E0016,Pablo Herrera,Quito,Administrative Assistant,22200
+E0017,Pedro Diaz,Buenos Aires,Software Engineer,45000
+E0018,Hector Castillo,Bogota,Data Analyst,43600
+E0019,Natalia Mendoza,Bogota,Data Scientist,53900
+E0020,Paula Ortiz,Santiago,,54100
+E0021,Diego Gomez,Bogota,Administrative Assistant,24600
+E0022,Luis Herrera,Lima,Director,89900
+E0023,Rosa Vargas,Lima,Data Analyst,41300
+E0024,Andres Gutierrez,Bogota,Data Analyst,36400
+E0025,Elena Rojas,Bogota,Administrative Assistant,24900
+E0026,Manuel Mendoza,Lima,Project Manager,73700
+E0027,Jose Rojas,Bogota,Software Engineer,43800
+E0028,Lucia Gutierrez,Buenos Aires,Software Engineer,53600
+E0029,Javier Gutierrez,LIMA,Project Manager,82500
+E0030,Paula Herrera,Quito,,39900
+E0031,Gabriela Garcia,Madrid,Project Manager,91600
+E0032,Rosa Flores,Lima,Software Engineer,60500
+E0033,Luis Martinez,Lima,Software Engineer,53100
+E0034,Paula Herrera,Quito,Accountant,38500
+E0035,Lucia Torres,Lima,Data Scientist,-67400
+E0036,Natalia Ortiz,Santiago,Data Scientist,77300
+E0037,Diego Vargas,Buenos Aires,Data Scientist,64800
+E0038,Ana Ramirez,Santiago ,Software Engineer,48200
+E0039,Sofia Chavez,Lima,Software Engineer,
+E0040,Sofia Martinez,Lima,Data Analyst,41400
+E0041,Sofia Torres,Madrid,Project Manager,75600
+E0042,Natalia Navarro,Quito,Data Analyst,32000
+E0043,Rosa Cruz,Santiago,Administrative Assistant,28300
+E0044,Daniela Cruz,Lima,Data Analyst,38700
+E0045,Javier Lopez,Santiago,Accountant,43300
+E0046,Ana Ramirez,Lima,Accountant,39500
+E0047,Lucia Torres,Lima,Administrative Assistant,19900
+E0048,Rosa Silva,Santiago,Project Manager,66300
+E0049,Paula Aguilar,Buenos Aires,Data Analyst,43000
+E0050,Sofia Perez,Lima,Data Analyst,43000
+E0051,Hector Rodriguez,Bogota,Administrative Assistant,24300
+E0052,Natalia Medina,Lima,Data Analyst,38100
+E0053,Isabel Medina,Buenos Aires,Software Engineer,57200
+E0054,Valeria Sanchez,Santiago,Data Scientist,58900
+E0055,Isabel Rivera,Madrid,Administrative Assistant,29900
+E0056,Laura Gutierrez,Lima,Administrative Assistant,22700
+E0057,Lucia Martinez,Lima,Director,76700
+E0058,Ana Navarro,Santiago,Data Scientist,60700
+E0059,Luis Cruz,Santiago,Administrative Assistant,21800
+E0060,Miguel Sanchez,Quito,Administrative Assistant,19600
+E0061,Carlos Vargas,Quito,Software Engineer,44100
+E0062,Natalia Martinez,Quito,Administrative Assistant,24000
+E0063,Ana Martinez,Lima,Data Scientist,59700
+E0064,Camila Navarro,Santiago,Administrative Assistant,22600
+E0065,Andres Aguilar,Lima,Software Engineer,48100
+E0066,Rosa Mendoza,Santiago,Software Engineer,69000
+E0067,Natalia Vargas,Santiago,Data Scientist,68000
+E0068,Hector Lopez,Lima,Project Manager,62400
+E0069,Jorge Castillo,Buenos Aires,Data Analyst,37800
+E0070,Fernando Reyes,Bogota,Data Scientist,62700
+E0071,Javier Cruz,Bogota,Project Manager,55000
+E0072,Carlos Mendoza,Buenos Aires,Data Analyst,38600
+E0073,Raul Cruz,Madrid,Data Analyst,50600
+E0074,Raul Navarro,Santiago,Data Analyst,52100
+E0075,Paula Gonzalez,Lima,Data Analyst,37800
+E0076,Natalia Medina,Bogota,Data Analyst,36100
+E0077,Elena Ramirez,Madrid,Data Analyst,49200
+E0078,Laura Cruz,Quito,Software Engineer,pending
+E0079,Sofia Silva,Madrid,Accountant,
+E0080,Daniela Garcia,Lima,Accountant,31900
+E0081,Daniela Medina,Lima,Project Manager,74400
+E0082,Lucia Medina,Quito,Accountant,30300
+E0083,Gabriela Ramirez,Quito,Software Engineer,40400
+E0084,Pablo Medina,Lima,Project Manager,64400
+E0085,Diego Rivera,Buenos Aires,Software Engineer,56500
+E0086,Camila Mendoza,Bogota,Data Analyst,41400
+E0087,Pedro Garcia,Santiago,Data Scientist,74600
+E0088,Miguel Rodriguez,Lima,Director,79800
+E0089,Pedro Cruz,Lima,Software Engineer,
+E0090,Ricardo Sanchez,Quito,Administrative Assistant,20100
+E0091,Natalia Medina,Bogota,Data Scientist,
+E0092,Elena Sanchez,Santiago,Data Scientist,72200
+E0093,Pedro Ruiz,Bogota,Data Analyst,40000
+E0094,Valeria Gutierrez,Bogota,Project Manager,69800
+E0095,Valeria Ortiz,Bogota,Software Engineer,48000
+E0096,Elena Rojas,Lima,Software Engineer,59700
+E0097,Paula Aguilar,Madrid,Data Scientist,71100
+E0098,Ricardo Ruiz,Lima,Software Engineer,50600
+E0099,Jorge Gutierrez,Quito,Administrative Assistant,20500
+E0100,Lucia Vargas,Santiago,Project Manager,85300
+E0101,Pedro Martinez,Lima,Administrative Assistant,23700
+E0102,Sofia Medina,Buenos Aires,Accountant,39200
+E0103,Gabriela Ruiz,Lima,Data Analyst,36200
+E0104,Javier Chavez,Buenos Aires,Data Analyst,39700
+E0105,Sofia Gonzalez,Lima,Data Scientist,58400
+E0106,Manuel Navarro,Quito,Data Analyst,39700
+E0107,Raul Gutierrez,Lima,Software Engineer,46100
+E0108,Ana Morales,Santiago,Administrative Assistant,29500
+E0109,Paula Ruiz,Lima,Administrative Assistant,22900
+E0110,Pablo Rojas,Bogota,Accountant,33600
+E0111,Andres Navarro,Madrid,Software Engineer,77000
+E0112,Manuel Ramirez,Lima,Project Manager,66700
+E0113,Gabriela Mendoza,Buenos Aires,Software Engineer,58600
+E0114,Sofia Torres,Lima,Software Engineer,55600
+E0115,Carlos Ramirez,Bogota,Project Manager,55600
+E0116,Daniela Cruz,Bogota,Data Analyst,34200
+E0117,Pablo Cruz,Bogota,Administrative Assistant,18400
+E0118,Jose Silva,Bogota,Accountant,39500
+E0119,Camila Flores,Madrid,Administrative Assistant,29300
+E0120,Daniela Ortiz,Buenos Aires,Project Manager,81000
+E0121,Sofia Reyes,Buenos Aires,Administrative Assistant,24200
+E0122,Pedro Vargas,Lima,Software Engineer,43500
+E0123,Andres Vega,Quito,Software Engineer,42400
+E0124,Diego Chavez,Lima,Data Scientist,49000
+E0125,Carlos Silva,Santiago,Data Analyst,47400
+E0126,Jorge Morales,Santiago,Data Analyst,43300
+E0127,Manuel Aguilar,Bogota,Accountant,32900
+E0128,Isabel Ortiz,Bogota,Accountant,33900
+E0129,Luis Herrera,Lima,Director,81100
+E0130,Sofia Sanchez,Madrid,Data Analyst,43400
+E0131,Gabriela Vargas,Buenos Aires,Data Scientist,55000
+E0132,Miguel Herrera,Lima,Director,88500
+E0133,Raul Lopez,Bogota,Data Scientist,64800
+E0134,Ricardo Garcia,Buenos Aires,Data Analyst,38300
+E0135,Diego Diaz,Madrid,Administrative Assistant,33600
+E0136,Pablo Mendoza,Madrid,Data Analyst,53300
+E0137,Elena Ruiz,Bogota,Data Scientist,52100
+E0138,Maria Gomez,Buenos Aires,Accountant,37800
+E0139,Javier Rivera,Santiago,Data Scientist,56900
+E0140,Daniela Gomez,Lima,Software Engineer,51700
+E0141,Daniela Perez,LIMA,Accountant,35500
+E0142,Rosa Vega,Quito,Director,76300
+E0143,Isabel Chavez,Santiago,Administrative Assistant,25300
+E0144,Luis Torres,Bogota,Project Manager,72300
+E0145,Carmen Vargas,Madrid,Software Engineer,66800
+E0146,Lucia Reyes,Bogota,Data Analyst,42400
+E0147,Hector Ruiz,Lima,Accountant,33900
+E0148,Jorge Martinez,Quito,Software Engineer,39900
+E0149,Sofia Castillo,Bogota,Software Engineer,50500
+E0150,Jose Martinez,Santiago,Data Scientist,65500
+E0151,Elena Chavez,Bogota,Software Engineer,45300
+E0152,Isabel Ortiz,Bogota,Administrative Assistant,20500
+E0153,Miguel Ramirez,Bogota,Data Scientist,51500
+E0154,Paula Herrera,Lima,Data Analyst,34500
+E0155,Miguel Rojas,Quito,Data Analyst,39600
+E0156,Ana Aguilar,Santiago,Accountant, 42200 
+E0157,Jose Castillo,Lima,Software Engineer,46200
+E0158,Paula Flores,Santiago,Software Engineer,68800
+E0159,Gabriela Lopez,,Data Analyst,41200
+E0160,Andres Rivera,Buenos Aires,Administrative Assistant,23100
+E0161,Gabriela Lopez,Lima,Data Analyst,45600
+E0162,Javier Vargas,Buenos Aires,Software Engineer,pending
+E0163,Valeria Martinez,Lima,Data Analyst,40500
+E0164,Carmen Ruiz,Madrid,Data Analyst,56300
+E0165,Andres Vega,Buenos Aires,Software Engineer,54000
+E0166,Valeria Chavez,Santiago,Project Manager,N/A
+E0167,Manuel Sanchez,Quito,Data Scientist,58400
+E0168,Sofia Perez,Quito,Software Engineer,41100
+E0169,Raul Ruiz,Santiago,Data Analyst,43800
+E0170,Valeria Castillo,Santiago,Data Analyst,41900
+E0171,Miguel Medina,Buenos Aires,Data Analyst,37200
+E0172,Jorge Cruz,Buenos Aires,Administrative Assistant,25800
+E0173,Miguel Aguilar,Lima,Software Engineer,45600
+E0174,Carmen Rojas,Lima,Data Analyst,43600
+E0175,Andres Castillo,Buenos Aires,Project Manager,68700
+E0176,Paula Reyes,Bogota,Software Engineer,45800
+E0177,Isabel Rivera,Bogota,Administrative Assistant,24500
+E0178,Elena Aguilar,Quito,Data Analyst,33200
+E0179,Manuel Vargas,Buenos Aires,Administrative Assistant,19500
+E0180,Lucia Reyes,Buenos Aires,Administrative Assistant,25500
+E0181,Ricardo Cruz, lima ,Administrative Assistant,23900
+E0182,Camila Cruz,Quito,Administrative Assistant,18000
+E0183,Pedro Cruz,Bogota,Data Scientist,62800
+E0184,Pablo Herrera,Quito,Software Engineer,55200
+E0185,Pedro Lopez,Santiago,Administrative Assistant,24200
+E0186,Jose Vargas,Madrid,Software Engineer,68000
+E0187,Fernando Gomez,Buenos Aires,Administrative Assistant,19800
+E0188,Maria Sanchez,Quito,Administrative Assistant,20500
+E0189,Hector Castillo,Bogota,Data Analyst,35100
+E0190,Rosa Ramirez,Santiago,Data Analyst,47200
+E0191,Daniela Martinez,Quito,Software Engineer,40000
+E0192,Ana Mendoza,Lima,Project Manager,58900
+E0193,Fernando Castillo,Buenos Aires,Administrative Assistant,25100
+E0194,Sofia Morales,Bogota,Accountant,39900
+E0195,Fernando Rojas,Santiago,Software Engineer,67700
+E0196,Rosa Silva,Buenos Aires,Project Manager,64800
+E0197,Pablo Garcia,Bogota,Project Manager,65100
+E0198,Elena Reyes,Bogota,Software Engineer,51100
+E0199,Pedro Ortiz,Buenos Aires,Administrative Assistant,23200
+E0200,Laura Sanchez,Buenos Aires,Software Engineer,61500
+E0201,Laura Herrera,Madrid,Software Engineer,64900
+E0202,Natalia Medina,Bogota,Software Engineer,49200
+E0203,Javier Gonzalez,Bogota,Director,94200
+E0204,Ricardo Rivera,Santiago,Data Analyst,45200
+E0205,Fernando Vega,Buenos Aires,Project Manager,68700
+E0206,Javier Gonzalez,Santiago,Accountant,39600
+E0207,Carmen Castillo,Lima,Accountant,33000
+E0208,Elena Silva,Bogota,Data Analyst,35700
+E0209,Hector Herrera,Santiago,Director,106700
+E0210,Sofia Mendoza,Santiago,Administrative Assistant,26900
+E0211,Luis Cruz,Quito,Software Engineer,43500
+E0212,Ana Morales,Madrid,Accountant,50000
+E0213,Pedro Medina,Lima,Software Engineer,43500
+E0214,Sofia Gutierrez,Lima,Software Engineer,50600
+E0215,Lucia Martinez,Bogota,Data Scientist,49800
+E0216,Gabriela Vega,Quito,Software Engineer,50900
+E0217,Andres Torres,Santiago,Software Engineer,62000
+E0218,Valeria Vargas,Quito,Project Manager,62000
+E0219,Ricardo Flores,Santiago,Data Analyst,52100
+E0220,Laura Flores,Quito,Software Engineer,43800
+E0221,Sofia Diaz,Lima,Software Engineer,51600
+E0222,Valeria Garcia,Santiago,Administrative Assistant,30200
+E0223,Ricardo Silva,Madrid,Data Scientist,70400
+E0224,Carmen Rojas,Quito,Accountant,28000
+E0225,Rosa Ramirez,Santiago,Project Manager,71800
+E0226,Carmen Torres,Quito,Software Engineer,-50200
+E0227,Pablo Gonzalez,Quito,Accountant, 34900 
+E0228,Valeria Medina,Quito,Project Manager,65900
+E0229,Luis Vega,Santiago,Administrative Assistant,27900
+E0230,Carlos Medina,Bogota,Accountant,N/A
+E0231,Natalia Torres,Santiago,Director,103300
+E0232,Gabriela Medina,,Software Engineer,59500
+E0233,Andres Martinez,Bogota,Project Manager,71700
+E0234,Isabel Vargas,Lima,Director,100600
+E0235,Camila Martinez,Madrid,Director,129000
+E0236,Andres Gomez,Buenos Aires,Data Analyst,41400
+E0237,Pablo Mendoza,,Data Scientist,55600
+E0238,Jose Ruiz,Madrid,Data Analyst,
+E0239,Sofia Mendoza,Madrid,Administrative Assistant,33700
+E0240,Valeria Mendoza,Lima,Accountant,40800
+E0241,Valeria Reyes,Bogota,Data Analyst,0
+E0242,Diego Morales,Lima,Software Engineer,52500
+E0243,Paula Cruz,Bogota,Director,91400
+E0244,Javier Lopez,Santiago,Accountant,46300
+E0245,Miguel Rodriguez,Buenos Aires,Data Scientist,69400
+E0246,Sofia Silva,Quito,Data Analyst,35900
+E0247,Hector Mendoza,Bogota,Director,81800
+E0248,Ana Silva,Bogota,Software Engineer,44400
+E0249,Javier Ruiz,Buenos Aires,Data Analyst,36900
+E0250,Carlos Medina,Madrid,Data Analyst,48700
+E0251,Jorge Chavez,Santiago,Data Analyst,49300
+E0252,Carlos Medina,Lima,Project Manager,63900
+E0253,Carlos Gonzalez,Madrid,Data Analyst,
+E0254,Laura Garcia,Santiago,Accountant,35500
+E0255,Ricardo Rivera,Lima,Software Engineer,57000
+E0256,Daniela Gutierrez,Lima,Software Engineer,45300
+E0257,Camila Gutierrez,Lima,Data Analyst,38900
+E0258,Carmen Rodriguez,Santiago,Administrative Assistant,23400
+E0259,Valeria Morales,Quito,Project Manager,66100
+E0260,Laura Diaz,bogota,Data Analyst,42800
+E0261,Andres Martinez,Bogota,Data Analyst,40600
+E0262,Carlos Torres,Madrid,Software Engineer,59500
+E0263,Diego Ruiz,Quito,Administrative Assistant,22400
+E0264,Ana Medina,Santiago,Administrative Assistant,26800
+E0265,Manuel Ortiz,Quito,Project Manager,66000
+E0266,Sofia Cruz,Quito,Data Analyst,36000
+E0267,Ana Rivera,Bogota,Administrative Assistant,21000
+E0268,Carlos Vargas,Bogota,Data Scientist,53500
+E0269,Luis Cruz,Madrid,Data Analyst,57500
+E0270,Paula Rodriguez,Lima,Accountant,39600
+E0271,Ana Cruz,Santiago,Administrative Assistant,24300
+E0272,Laura Vega,Bogota,Data Scientist,60700
+E0273,Camila Lopez,Quito,Director,85600
+E0274,Sofia Silva,Santiago,Data Analyst,47600
+E0275,Manuel Torres,Lima,Project Manager,64800
+E0276,Manuel Aguilar,Santiago,Accountant,45700
+E0277,Carmen Vega,Quito,Data Scientist,55100
+E0278,Miguel Castillo,Quito,Data Scientist,45300
+E0279,Lucia Silva,Buenos Aires,Project Manager,66500
+E0280,Isabel Mendoza,Lima,Data Scientist,49900
+E0281,Diego Cruz,Madrid,Data Analyst,52200
+E0282,Pedro Herrera,Santiago,Data Analyst,42300
+E0283,Carlos Perez,Madrid,Administrative Assistant,33400
+E0284,Andres Vargas,Buenos Aires,Data Analyst,35100
+E0285,Jorge Herrera,Bogota,Data Scientist,54300
+E0286,Elena Vargas,Santiago,Software Engineer,51300
+E0287,Sofia Diaz,Santiago,Administrative Assistant,24100
+E0288,Jorge Herrera,Madrid,Data Analyst,46400
+E0289,Jose Reyes,Lima,Software Engineer,
+E0290,Raul Ramirez,Buenos Aires,Data Analyst,N/A
+E0291,Luis Diaz,Santiago,Accountant,45200
+E0292,Natalia Martinez,Buenos Aires,Data Analyst,34200
+E0293,Raul Mendoza,Buenos Aires,Administrative Assistant,24000
+E0294,Pedro Perez,Bogota,Data Analyst,31700
+E0295,Natalia Gomez,Buenos Aires,Data Scientist,67200
+E0296,Ricardo Diaz,Lima,Project Manager,61900
+E0297,Pedro Ramirez,Santiago,Software Engineer,
+E0298,Ana Gutierrez,Bogota,Data Analyst,38000
+E0299,Isabel Aguilar,Santiago,Project Manager,73500
+E0300,Miguel Sanchez,Quito,Data Analyst,31600

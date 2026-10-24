@@ -1,0 +1,1199 @@
+hbase:001:0> # Full table scan (Activity A.2: scan 'emp').
+hbase:002:0> # Its output is both evidence and the input of the fallback reader
+hbase:003:0> # (python3 src/analyze.py --source shell --scan-file results/raw/scan_emp.txt).
+hbase:004:0> #
+hbase:005:0> # Run from the repository root:
+hbase:006:0> #   hbase shell -n hbase/03_full_scan.hbase 2>/dev/null > results/raw/scan_emp.txt
+hbase:007:0> 
+hbase:008:0> scan 'emp'
+ROW  COLUMN+CELL
+ E0001 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Quito
+ E0001 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Sofia Gonzalez
+ E0001 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Analyst
+ E0001 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=33800
+ E0002 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Quito
+ E0002 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Luis Chavez
+ E0002 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Scientist
+ E0002 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=61300
+ E0003 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Bogota
+ E0003 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Fernando Ruiz
+ E0003 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Analyst
+ E0003 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=34200
+ E0004 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Lima
+ E0004 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Paula Cruz
+ E0004 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Analyst
+ E0004 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=41600
+ E0005 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Lima
+ E0005 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Jose Herrera
+ E0005 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Administrative Assistant
+ E0005 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=25000
+ E0006 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Buenos Aires
+ E0006 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Carlos Sanchez
+ E0006 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Scientist
+ E0006 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=57100
+ E0007 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Madrid
+ E0007 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Ana Gomez
+ E0007 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Software Engineer
+ E0007 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=58200
+ E0008 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Buenos Aires
+ E0008 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Isabel Morales
+ E0008 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Scientist
+ E0008 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=66700
+ E0009 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Santiago
+ E0009 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Paula Flores
+ E0009 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Director
+ E0009 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=98000
+ E0010 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Buenos Aires
+ E0010 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Ricardo Sanchez
+ E0010 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Scientist
+ E0010 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=67800
+ E0011 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Quito
+ E0011 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Valeria Martinez
+ E0011 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Analyst
+ E0011 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=33200
+ E0012 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Buenos Aires
+ E0012 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Andres Mendoza
+ E0012 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Project Manager
+ E0012 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=67200
+ E0013 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Buenos Aires
+ E0013 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Elena Torres
+ E0013 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Analyst
+ E0013 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=38900
+ E0014 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Quito
+ E0014 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Javier Perez
+ E0014 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Scientist
+ E0014 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=46100
+ E0015 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Santiago
+ E0015 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Miguel Vega
+ E0015 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Software Engineer
+ E0015 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=58400
+ E0016 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Quito
+ E0016 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Pablo Herrera
+ E0016 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Administrative Assistant
+ E0016 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=22200
+ E0017 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Buenos Aires
+ E0017 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Pedro Diaz
+ E0017 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Software Engineer
+ E0017 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=45000
+ E0018 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Bogota
+ E0018 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Hector Castillo
+ E0018 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Analyst
+ E0018 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=43600
+ E0019 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Bogota
+ E0019 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Natalia Mendoza
+ E0019 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Scientist
+ E0019 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=53900
+ E0020 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Santiago
+ E0020 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Paula Ortiz
+ E0020 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=54100
+ E0021 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Bogota
+ E0021 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Diego Gomez
+ E0021 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Administrative Assistant
+ E0021 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=24600
+ E0022 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Lima
+ E0022 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Luis Herrera
+ E0022 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Director
+ E0022 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=89900
+ E0023 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Lima
+ E0023 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Rosa Vargas
+ E0023 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Analyst
+ E0023 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=41300
+ E0024 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Bogota
+ E0024 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Andres Gutierrez
+ E0024 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Data Analyst
+ E0024 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=36400
+ E0025 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Bogota
+ E0025 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Elena Rojas
+ E0025 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Administrative Assistant
+ E0025 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=24900
+ E0026 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Lima
+ E0026 column=personal:name, timestamp=2026-10-24T06:25:36.361, value=Manuel Mendoza
+ E0026 column=professional:designation, timestamp=2026-10-24T06:25:36.361, value=Project Manager
+ E0026 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=73700
+ E0027 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Bogota
+ E0027 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Jose Rojas
+ E0027 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Software Engineer
+ E0027 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=43800
+ E0028 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Buenos Aires
+ E0028 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Lucia Gutierrez
+ E0028 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Software Engineer
+ E0028 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=53600
+ E0029 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=LIMA
+ E0029 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Javier Gutierrez
+ E0029 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Project Manager
+ E0029 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=82500
+ E0030 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Quito
+ E0030 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Paula Herrera
+ E0030 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=39900
+ E0031 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Madrid
+ E0031 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Gabriela Garcia
+ E0031 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Project Manager
+ E0031 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=91600
+ E0032 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0032 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Rosa Flores
+ E0032 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Software Engineer
+ E0032 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=60500
+ E0033 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0033 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Luis Martinez
+ E0033 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Software Engineer
+ E0033 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=53100
+ E0034 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Quito
+ E0034 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Paula Herrera
+ E0034 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Accountant
+ E0034 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=38500
+ E0035 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0035 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Lucia Torres
+ E0035 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Data Scientist
+ E0035 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=-67400
+ E0036 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Santiago
+ E0036 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Natalia Ortiz
+ E0036 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Data Scientist
+ E0036 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=77300
+ E0037 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Buenos Aires
+ E0037 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Diego Vargas
+ E0037 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Data Scientist
+ E0037 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=64800
+ E0038 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Santiago 
+ E0038 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Ana Ramirez
+ E0038 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Software Engineer
+ E0038 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=48200
+ E0039 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0039 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Sofia Chavez
+ E0039 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Software Engineer
+ E0040 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0040 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Sofia Martinez
+ E0040 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Data Analyst
+ E0040 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=41400
+ E0041 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Madrid
+ E0041 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Sofia Torres
+ E0041 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Project Manager
+ E0041 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=75600
+ E0042 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Quito
+ E0042 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Natalia Navarro
+ E0042 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Data Analyst
+ E0042 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=32000
+ E0043 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Santiago
+ E0043 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Rosa Cruz
+ E0043 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Administrative Assistant
+ E0043 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=28300
+ E0044 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0044 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Daniela Cruz
+ E0044 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Data Analyst
+ E0044 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=38700
+ E0045 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Santiago
+ E0045 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Javier Lopez
+ E0045 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Accountant
+ E0045 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=43300
+ E0046 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0046 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Ana Ramirez
+ E0046 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Accountant
+ E0046 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=39500
+ E0047 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0047 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Lucia Torres
+ E0047 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Administrative Assistant
+ E0047 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=19900
+ E0048 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Santiago
+ E0048 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Rosa Silva
+ E0048 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Project Manager
+ E0048 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=66300
+ E0049 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Buenos Aires
+ E0049 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Paula Aguilar
+ E0049 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Data Analyst
+ E0049 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=43000
+ E0050 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0050 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Sofia Perez
+ E0050 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Data Analyst
+ E0050 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=43000
+ E0051 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Bogota
+ E0051 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Hector Rodriguez
+ E0051 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Administrative Assistant
+ E0051 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=24300
+ E0052 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0052 column=personal:name, timestamp=2026-10-24T06:25:36.399, value=Natalia Medina
+ E0052 column=professional:designation, timestamp=2026-10-24T06:25:36.399, value=Data Analyst
+ E0052 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=38100
+ E0053 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Buenos Aires
+ E0053 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Isabel Medina
+ E0053 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Software Engineer
+ E0053 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=57200
+ E0054 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Santiago
+ E0054 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Valeria Sanchez
+ E0054 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Scientist
+ E0054 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=58900
+ E0055 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Madrid
+ E0055 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Isabel Rivera
+ E0055 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Administrative Assistant
+ E0055 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=29900
+ E0056 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0056 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Laura Gutierrez
+ E0056 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Administrative Assistant
+ E0056 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=22700
+ E0057 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0057 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Lucia Martinez
+ E0057 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Director
+ E0057 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=76700
+ E0058 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Santiago
+ E0058 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Ana Navarro
+ E0058 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Scientist
+ E0058 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=60700
+ E0059 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Santiago
+ E0059 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Luis Cruz
+ E0059 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Administrative Assistant
+ E0059 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=21800
+ E0060 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Quito
+ E0060 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Miguel Sanchez
+ E0060 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Administrative Assistant
+ E0060 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=19600
+ E0061 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Quito
+ E0061 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Carlos Vargas
+ E0061 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Software Engineer
+ E0061 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=44100
+ E0062 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Quito
+ E0062 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Natalia Martinez
+ E0062 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Administrative Assistant
+ E0062 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=24000
+ E0063 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0063 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Ana Martinez
+ E0063 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Scientist
+ E0063 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=59700
+ E0064 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Santiago
+ E0064 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Camila Navarro
+ E0064 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Administrative Assistant
+ E0064 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=22600
+ E0065 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0065 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Andres Aguilar
+ E0065 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Software Engineer
+ E0065 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=48100
+ E0066 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Santiago
+ E0066 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Rosa Mendoza
+ E0066 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Software Engineer
+ E0066 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=69000
+ E0067 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Santiago
+ E0067 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Natalia Vargas
+ E0067 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Scientist
+ E0067 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=68000
+ E0068 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0068 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Hector Lopez
+ E0068 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Project Manager
+ E0068 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=62400
+ E0069 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Buenos Aires
+ E0069 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Jorge Castillo
+ E0069 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Analyst
+ E0069 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=37800
+ E0070 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Bogota
+ E0070 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Fernando Reyes
+ E0070 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Scientist
+ E0070 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=62700
+ E0071 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Bogota
+ E0071 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Javier Cruz
+ E0071 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Project Manager
+ E0071 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=55000
+ E0072 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Buenos Aires
+ E0072 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Carlos Mendoza
+ E0072 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Analyst
+ E0072 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=38600
+ E0073 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Madrid
+ E0073 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Raul Cruz
+ E0073 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Analyst
+ E0073 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=50600
+ E0074 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Santiago
+ E0074 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Raul Navarro
+ E0074 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Analyst
+ E0074 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=52100
+ E0075 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0075 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Paula Gonzalez
+ E0075 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Analyst
+ E0075 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=37800
+ E0076 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Bogota
+ E0076 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Natalia Medina
+ E0076 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Analyst
+ E0076 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=36100
+ E0077 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Madrid
+ E0077 column=personal:name, timestamp=2026-10-24T06:25:36.411, value=Elena Ramirez
+ E0077 column=professional:designation, timestamp=2026-10-24T06:25:36.411, value=Data Analyst
+ E0077 column=professional:salary, timestamp=2026-10-24T06:25:36.411, value=49200
+ E0078 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Quito
+ E0078 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Laura Cruz
+ E0078 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Software Engineer
+ E0078 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=pending
+ E0079 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Madrid
+ E0079 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Sofia Silva
+ E0079 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Accountant
+ E0080 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0080 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Daniela Garcia
+ E0080 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Accountant
+ E0080 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=31900
+ E0081 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0081 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Daniela Medina
+ E0081 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Project Manager
+ E0081 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=74400
+ E0082 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Quito
+ E0082 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Lucia Medina
+ E0082 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Accountant
+ E0082 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=30300
+ E0083 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Quito
+ E0083 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Gabriela Ramirez
+ E0083 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Software Engineer
+ E0083 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=40400
+ E0084 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0084 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Pablo Medina
+ E0084 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Project Manager
+ E0084 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=64400
+ E0085 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Buenos Aires
+ E0085 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Diego Rivera
+ E0085 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Software Engineer
+ E0085 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=56500
+ E0086 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Bogota
+ E0086 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Camila Mendoza
+ E0086 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Data Analyst
+ E0086 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=41400
+ E0087 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Santiago
+ E0087 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Pedro Garcia
+ E0087 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Data Scientist
+ E0087 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=74600
+ E0088 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0088 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Miguel Rodriguez
+ E0088 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Director
+ E0088 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=79800
+ E0089 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0089 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Pedro Cruz
+ E0089 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Software Engineer
+ E0090 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Quito
+ E0090 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Ricardo Sanchez
+ E0090 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Administrative Assistant
+ E0090 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=20100
+ E0091 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Bogota
+ E0091 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Natalia Medina
+ E0091 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Data Scientist
+ E0092 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Santiago
+ E0092 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Elena Sanchez
+ E0092 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Data Scientist
+ E0092 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=72200
+ E0093 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Bogota
+ E0093 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Pedro Ruiz
+ E0093 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Data Analyst
+ E0093 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=40000
+ E0094 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Bogota
+ E0094 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Valeria Gutierrez
+ E0094 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Project Manager
+ E0094 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=69800
+ E0095 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Bogota
+ E0095 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Valeria Ortiz
+ E0095 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Software Engineer
+ E0095 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=48000
+ E0096 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0096 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Elena Rojas
+ E0096 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Software Engineer
+ E0096 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=59700
+ E0097 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Madrid
+ E0097 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Paula Aguilar
+ E0097 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Data Scientist
+ E0097 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=71100
+ E0098 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0098 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Ricardo Ruiz
+ E0098 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Software Engineer
+ E0098 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=50600
+ E0099 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Quito
+ E0099 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Jorge Gutierrez
+ E0099 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Administrative Assistant
+ E0099 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=20500
+ E0100 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Santiago
+ E0100 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Lucia Vargas
+ E0100 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Project Manager
+ E0100 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=85300
+ E0101 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0101 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Pedro Martinez
+ E0101 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Administrative Assistant
+ E0101 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=23700
+ E0102 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Buenos Aires
+ E0102 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Sofia Medina
+ E0102 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Accountant
+ E0102 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=39200
+ E0103 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0103 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Gabriela Ruiz
+ E0103 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Data Analyst
+ E0103 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=36200
+ E0104 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Buenos Aires
+ E0104 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Javier Chavez
+ E0104 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Data Analyst
+ E0104 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=39700
+ E0105 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0105 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Sofia Gonzalez
+ E0105 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Data Scientist
+ E0105 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=58400
+ E0106 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Quito
+ E0106 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Manuel Navarro
+ E0106 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Data Analyst
+ E0106 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=39700
+ E0107 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0107 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Raul Gutierrez
+ E0107 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Software Engineer
+ E0107 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=46100
+ E0108 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Santiago
+ E0108 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Ana Morales
+ E0108 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Administrative Assistant
+ E0108 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=29500
+ E0109 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0109 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Paula Ruiz
+ E0109 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Administrative Assistant
+ E0109 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=22900
+ E0110 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Bogota
+ E0110 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Pablo Rojas
+ E0110 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Accountant
+ E0110 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=33600
+ E0111 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Madrid
+ E0111 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Andres Navarro
+ E0111 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Software Engineer
+ E0111 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=77000
+ E0112 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0112 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Manuel Ramirez
+ E0112 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Project Manager
+ E0112 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=66700
+ E0113 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Buenos Aires
+ E0113 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Gabriela Mendoza
+ E0113 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Software Engineer
+ E0113 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=58600
+ E0114 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0114 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Sofia Torres
+ E0114 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Software Engineer
+ E0114 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=55600
+ E0115 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Bogota
+ E0115 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Carlos Ramirez
+ E0115 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Project Manager
+ E0115 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=55600
+ E0116 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Bogota
+ E0116 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Daniela Cruz
+ E0116 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Data Analyst
+ E0116 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=34200
+ E0117 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Bogota
+ E0117 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Pablo Cruz
+ E0117 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Administrative Assistant
+ E0117 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=18400
+ E0118 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Bogota
+ E0118 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Jose Silva
+ E0118 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Accountant
+ E0118 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=39500
+ E0119 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Madrid
+ E0119 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Camila Flores
+ E0119 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Administrative Assistant
+ E0119 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=29300
+ E0120 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Buenos Aires
+ E0120 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Daniela Ortiz
+ E0120 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Project Manager
+ E0120 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=81000
+ E0121 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Buenos Aires
+ E0121 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Sofia Reyes
+ E0121 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Administrative Assistant
+ E0121 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=24200
+ E0122 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0122 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Pedro Vargas
+ E0122 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Software Engineer
+ E0122 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=43500
+ E0123 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Quito
+ E0123 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Andres Vega
+ E0123 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Software Engineer
+ E0123 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=42400
+ E0124 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0124 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Diego Chavez
+ E0124 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Data Scientist
+ E0124 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=49000
+ E0125 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Santiago
+ E0125 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Carlos Silva
+ E0125 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Data Analyst
+ E0125 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=47400
+ E0126 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Santiago
+ E0126 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Jorge Morales
+ E0126 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Data Analyst
+ E0126 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=43300
+ E0127 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Bogota
+ E0127 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Manuel Aguilar
+ E0127 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Accountant
+ E0127 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=32900
+ E0128 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Bogota
+ E0128 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Isabel Ortiz
+ E0128 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Accountant
+ E0128 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=33900
+ E0129 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Lima
+ E0129 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Luis Herrera
+ E0129 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Director
+ E0129 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=81100
+ E0130 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Madrid
+ E0130 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Sofia Sanchez
+ E0130 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Data Analyst
+ E0130 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=43400
+ E0131 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Buenos Aires
+ E0131 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Gabriela Vargas
+ E0131 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Data Scientist
+ E0131 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=55000
+ E0132 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Lima
+ E0132 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Miguel Herrera
+ E0132 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Director
+ E0132 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=88500
+ E0133 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Bogota
+ E0133 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Raul Lopez
+ E0133 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Data Scientist
+ E0133 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=64800
+ E0134 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Buenos Aires
+ E0134 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Ricardo Garcia
+ E0134 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Data Analyst
+ E0134 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=38300
+ E0135 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Madrid
+ E0135 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Diego Diaz
+ E0135 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Administrative Assistant
+ E0135 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=33600
+ E0136 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Madrid
+ E0136 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Pablo Mendoza
+ E0136 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Data Analyst
+ E0136 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=53300
+ E0137 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Bogota
+ E0137 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Elena Ruiz
+ E0137 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Data Scientist
+ E0137 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=52100
+ E0138 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Buenos Aires
+ E0138 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Maria Gomez
+ E0138 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Accountant
+ E0138 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=37800
+ E0139 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Santiago
+ E0139 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Javier Rivera
+ E0139 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Data Scientist
+ E0139 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=56900
+ E0140 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Lima
+ E0140 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Daniela Gomez
+ E0140 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Software Engineer
+ E0140 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=51700
+ E0141 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=LIMA
+ E0141 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Daniela Perez
+ E0141 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Accountant
+ E0141 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=35500
+ E0142 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Quito
+ E0142 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Rosa Vega
+ E0142 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Director
+ E0142 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=76300
+ E0143 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Santiago
+ E0143 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Isabel Chavez
+ E0143 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Administrative Assistant
+ E0143 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=25300
+ E0144 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Bogota
+ E0144 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Luis Torres
+ E0144 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Project Manager
+ E0144 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=72300
+ E0145 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Madrid
+ E0145 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Carmen Vargas
+ E0145 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Software Engineer
+ E0145 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=66800
+ E0146 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Bogota
+ E0146 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Lucia Reyes
+ E0146 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Data Analyst
+ E0146 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=42400
+ E0147 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Lima
+ E0147 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Hector Ruiz
+ E0147 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Accountant
+ E0147 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=33900
+ E0148 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Quito
+ E0148 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Jorge Martinez
+ E0148 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Software Engineer
+ E0148 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=39900
+ E0149 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Bogota
+ E0149 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Sofia Castillo
+ E0149 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Software Engineer
+ E0149 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=50500
+ E0150 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Santiago
+ E0150 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Jose Martinez
+ E0150 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Data Scientist
+ E0150 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=65500
+ E0151 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Bogota
+ E0151 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Elena Chavez
+ E0151 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Software Engineer
+ E0151 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=45300
+ E0152 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Bogota
+ E0152 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Isabel Ortiz
+ E0152 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Administrative Assistant
+ E0152 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=20500
+ E0153 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Bogota
+ E0153 column=personal:name, timestamp=2026-10-24T06:25:36.444, value=Miguel Ramirez
+ E0153 column=professional:designation, timestamp=2026-10-24T06:25:36.444, value=Data Scientist
+ E0153 column=professional:salary, timestamp=2026-10-24T06:25:36.444, value=51500
+ E0154 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0154 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Paula Herrera
+ E0154 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Analyst
+ E0154 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=34500
+ E0155 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Quito
+ E0155 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Miguel Rojas
+ E0155 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Analyst
+ E0155 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=39600
+ E0156 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Santiago
+ E0156 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Ana Aguilar
+ E0156 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Accountant
+ E0156 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value= 42200 
+ E0157 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0157 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Jose Castillo
+ E0157 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Software Engineer
+ E0157 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=46200
+ E0158 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Santiago
+ E0158 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Paula Flores
+ E0158 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Software Engineer
+ E0158 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=68800
+ E0159 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Gabriela Lopez
+ E0159 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Analyst
+ E0159 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=41200
+ E0160 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Buenos Aires
+ E0160 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Andres Rivera
+ E0160 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Administrative Assistant
+ E0160 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=23100
+ E0161 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0161 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Gabriela Lopez
+ E0161 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Analyst
+ E0161 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=45600
+ E0162 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Buenos Aires
+ E0162 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Javier Vargas
+ E0162 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Software Engineer
+ E0162 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=pending
+ E0163 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0163 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Valeria Martinez
+ E0163 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Analyst
+ E0163 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=40500
+ E0164 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Madrid
+ E0164 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Carmen Ruiz
+ E0164 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Analyst
+ E0164 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=56300
+ E0165 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Buenos Aires
+ E0165 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Andres Vega
+ E0165 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Software Engineer
+ E0165 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=54000
+ E0166 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Santiago
+ E0166 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Valeria Chavez
+ E0166 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Project Manager
+ E0166 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=N/A
+ E0167 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Quito
+ E0167 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Manuel Sanchez
+ E0167 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Scientist
+ E0167 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=58400
+ E0168 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Quito
+ E0168 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Sofia Perez
+ E0168 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Software Engineer
+ E0168 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=41100
+ E0169 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Santiago
+ E0169 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Raul Ruiz
+ E0169 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Analyst
+ E0169 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=43800
+ E0170 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Santiago
+ E0170 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Valeria Castillo
+ E0170 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Analyst
+ E0170 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=41900
+ E0171 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Buenos Aires
+ E0171 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Miguel Medina
+ E0171 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Analyst
+ E0171 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=37200
+ E0172 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Buenos Aires
+ E0172 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Jorge Cruz
+ E0172 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Administrative Assistant
+ E0172 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=25800
+ E0173 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0173 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Miguel Aguilar
+ E0173 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Software Engineer
+ E0173 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=45600
+ E0174 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0174 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Carmen Rojas
+ E0174 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Analyst
+ E0174 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=43600
+ E0175 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Buenos Aires
+ E0175 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Andres Castillo
+ E0175 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Project Manager
+ E0175 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=68700
+ E0176 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Bogota
+ E0176 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Paula Reyes
+ E0176 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Software Engineer
+ E0176 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=45800
+ E0177 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Bogota
+ E0177 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Isabel Rivera
+ E0177 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Administrative Assistant
+ E0177 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=24500
+ E0178 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Quito
+ E0178 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Elena Aguilar
+ E0178 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Data Analyst
+ E0178 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=33200
+ E0179 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Buenos Aires
+ E0179 column=personal:name, timestamp=2026-10-24T06:25:36.454, value=Manuel Vargas
+ E0179 column=professional:designation, timestamp=2026-10-24T06:25:36.454, value=Administrative Assistant
+ E0179 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=19500
+ E0180 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Buenos Aires
+ E0180 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Lucia Reyes
+ E0180 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Administrative Assistant
+ E0180 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=25500
+ E0181 column=personal:city, timestamp=2026-10-24T06:25:36.464, value= lima 
+ E0181 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Ricardo Cruz
+ E0181 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Administrative Assistant
+ E0181 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=23900
+ E0182 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Quito
+ E0182 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Camila Cruz
+ E0182 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Administrative Assistant
+ E0182 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=18000
+ E0183 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Bogota
+ E0183 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Pedro Cruz
+ E0183 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Data Scientist
+ E0183 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=62800
+ E0184 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Quito
+ E0184 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Pablo Herrera
+ E0184 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Software Engineer
+ E0184 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=55200
+ E0185 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Santiago
+ E0185 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Pedro Lopez
+ E0185 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Administrative Assistant
+ E0185 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=24200
+ E0186 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Madrid
+ E0186 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Jose Vargas
+ E0186 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Software Engineer
+ E0186 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=68000
+ E0187 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Buenos Aires
+ E0187 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Fernando Gomez
+ E0187 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Administrative Assistant
+ E0187 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=19800
+ E0188 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Quito
+ E0188 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Maria Sanchez
+ E0188 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Administrative Assistant
+ E0188 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=20500
+ E0189 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Bogota
+ E0189 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Hector Castillo
+ E0189 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Data Analyst
+ E0189 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=35100
+ E0190 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Santiago
+ E0190 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Rosa Ramirez
+ E0190 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Data Analyst
+ E0190 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=47200
+ E0191 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Quito
+ E0191 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Daniela Martinez
+ E0191 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Software Engineer
+ E0191 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=40000
+ E0192 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Lima
+ E0192 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Ana Mendoza
+ E0192 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Project Manager
+ E0192 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=58900
+ E0193 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Buenos Aires
+ E0193 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Fernando Castillo
+ E0193 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Administrative Assistant
+ E0193 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=25100
+ E0194 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Bogota
+ E0194 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Sofia Morales
+ E0194 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Accountant
+ E0194 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=39900
+ E0195 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Santiago
+ E0195 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Fernando Rojas
+ E0195 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Software Engineer
+ E0195 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=67700
+ E0196 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Buenos Aires
+ E0196 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Rosa Silva
+ E0196 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Project Manager
+ E0196 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=64800
+ E0197 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Bogota
+ E0197 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Pablo Garcia
+ E0197 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Project Manager
+ E0197 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=65100
+ E0198 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Bogota
+ E0198 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Elena Reyes
+ E0198 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Software Engineer
+ E0198 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=51100
+ E0199 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Buenos Aires
+ E0199 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Pedro Ortiz
+ E0199 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Administrative Assistant
+ E0199 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=23200
+ E0200 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Buenos Aires
+ E0200 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Laura Sanchez
+ E0200 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Software Engineer
+ E0200 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=61500
+ E0201 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Madrid
+ E0201 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Laura Herrera
+ E0201 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Software Engineer
+ E0201 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=64900
+ E0202 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Bogota
+ E0202 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Natalia Medina
+ E0202 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Software Engineer
+ E0202 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=49200
+ E0203 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Bogota
+ E0203 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Javier Gonzalez
+ E0203 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Director
+ E0203 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=94200
+ E0204 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Santiago
+ E0204 column=personal:name, timestamp=2026-10-24T06:25:36.464, value=Ricardo Rivera
+ E0204 column=professional:designation, timestamp=2026-10-24T06:25:36.464, value=Data Analyst
+ E0204 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=45200
+ E0205 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Buenos Aires
+ E0205 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Fernando Vega
+ E0205 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Project Manager
+ E0205 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=68700
+ E0206 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Santiago
+ E0206 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Javier Gonzalez
+ E0206 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Accountant
+ E0206 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=39600
+ E0207 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Lima
+ E0207 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Carmen Castillo
+ E0207 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Accountant
+ E0207 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=33000
+ E0208 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Bogota
+ E0208 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Elena Silva
+ E0208 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Data Analyst
+ E0208 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=35700
+ E0209 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Santiago
+ E0209 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Hector Herrera
+ E0209 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Director
+ E0209 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=106700
+ E0210 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Santiago
+ E0210 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Sofia Mendoza
+ E0210 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Administrative Assistant
+ E0210 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=26900
+ E0211 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Quito
+ E0211 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Luis Cruz
+ E0211 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Software Engineer
+ E0211 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=43500
+ E0212 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Madrid
+ E0212 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Ana Morales
+ E0212 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Accountant
+ E0212 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=50000
+ E0213 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Lima
+ E0213 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Pedro Medina
+ E0213 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Software Engineer
+ E0213 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=43500
+ E0214 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Lima
+ E0214 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Sofia Gutierrez
+ E0214 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Software Engineer
+ E0214 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=50600
+ E0215 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Bogota
+ E0215 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Lucia Martinez
+ E0215 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Data Scientist
+ E0215 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=49800
+ E0216 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Quito
+ E0216 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Gabriela Vega
+ E0216 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Software Engineer
+ E0216 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=50900
+ E0217 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Santiago
+ E0217 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Andres Torres
+ E0217 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Software Engineer
+ E0217 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=62000
+ E0218 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Quito
+ E0218 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Valeria Vargas
+ E0218 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Project Manager
+ E0218 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=62000
+ E0219 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Santiago
+ E0219 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Ricardo Flores
+ E0219 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Data Analyst
+ E0219 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=52100
+ E0220 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Quito
+ E0220 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Laura Flores
+ E0220 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Software Engineer
+ E0220 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=43800
+ E0221 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Lima
+ E0221 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Sofia Diaz
+ E0221 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Software Engineer
+ E0221 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=51600
+ E0222 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Santiago
+ E0222 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Valeria Garcia
+ E0222 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Administrative Assistant
+ E0222 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=30200
+ E0223 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Madrid
+ E0223 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Ricardo Silva
+ E0223 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Data Scientist
+ E0223 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=70400
+ E0224 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Quito
+ E0224 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Carmen Rojas
+ E0224 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Accountant
+ E0224 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=28000
+ E0225 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Santiago
+ E0225 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Rosa Ramirez
+ E0225 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Project Manager
+ E0225 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=71800
+ E0226 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Quito
+ E0226 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Carmen Torres
+ E0226 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Software Engineer
+ E0226 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=-50200
+ E0227 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Quito
+ E0227 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Pablo Gonzalez
+ E0227 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Accountant
+ E0227 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value= 34900 
+ E0228 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Quito
+ E0228 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Valeria Medina
+ E0228 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Project Manager
+ E0228 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=65900
+ E0229 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Santiago
+ E0229 column=personal:name, timestamp=2026-10-24T06:25:36.472, value=Luis Vega
+ E0229 column=professional:designation, timestamp=2026-10-24T06:25:36.472, value=Administrative Assistant
+ E0229 column=professional:salary, timestamp=2026-10-24T06:25:36.472, value=27900
+ E0230 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Bogota
+ E0230 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Carlos Medina
+ E0230 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Accountant
+ E0230 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=N/A
+ E0231 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Santiago
+ E0231 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Natalia Torres
+ E0231 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Director
+ E0231 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=103300
+ E0232 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Gabriela Medina
+ E0232 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Software Engineer
+ E0232 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=59500
+ E0233 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Bogota
+ E0233 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Andres Martinez
+ E0233 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Project Manager
+ E0233 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=71700
+ E0234 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Lima
+ E0234 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Isabel Vargas
+ E0234 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Director
+ E0234 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=100600
+ E0235 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Madrid
+ E0235 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Camila Martinez
+ E0235 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Director
+ E0235 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=129000
+ E0236 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Buenos Aires
+ E0236 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Andres Gomez
+ E0236 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Data Analyst
+ E0236 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=41400
+ E0237 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Pablo Mendoza
+ E0237 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Data Scientist
+ E0237 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=55600
+ E0238 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Madrid
+ E0238 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Jose Ruiz
+ E0238 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Data Analyst
+ E0239 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Madrid
+ E0239 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Sofia Mendoza
+ E0239 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Administrative Assistant
+ E0239 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=33700
+ E0240 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Lima
+ E0240 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Valeria Mendoza
+ E0240 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Accountant
+ E0240 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=40800
+ E0241 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Bogota
+ E0241 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Valeria Reyes
+ E0241 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Data Analyst
+ E0241 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=0
+ E0242 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Lima
+ E0242 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Diego Morales
+ E0242 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Software Engineer
+ E0242 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=52500
+ E0243 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Bogota
+ E0243 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Paula Cruz
+ E0243 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Director
+ E0243 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=91400
+ E0244 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Santiago
+ E0244 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Javier Lopez
+ E0244 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Accountant
+ E0244 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=46300
+ E0245 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Buenos Aires
+ E0245 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Miguel Rodriguez
+ E0245 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Data Scientist
+ E0245 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=69400
+ E0246 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Quito
+ E0246 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Sofia Silva
+ E0246 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Data Analyst
+ E0246 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=35900
+ E0247 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Bogota
+ E0247 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Hector Mendoza
+ E0247 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Director
+ E0247 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=81800
+ E0248 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Bogota
+ E0248 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Ana Silva
+ E0248 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Software Engineer
+ E0248 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=44400
+ E0249 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Buenos Aires
+ E0249 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Javier Ruiz
+ E0249 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Data Analyst
+ E0249 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=36900
+ E0250 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Madrid
+ E0250 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Carlos Medina
+ E0250 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Data Analyst
+ E0250 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=48700
+ E0251 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Santiago
+ E0251 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Jorge Chavez
+ E0251 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Data Analyst
+ E0251 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=49300
+ E0252 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Lima
+ E0252 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Carlos Medina
+ E0252 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Project Manager
+ E0252 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=63900
+ E0253 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Madrid
+ E0253 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Carlos Gonzalez
+ E0253 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Data Analyst
+ E0254 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Santiago
+ E0254 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Laura Garcia
+ E0254 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Accountant
+ E0254 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=35500
+ E0255 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Lima
+ E0255 column=personal:name, timestamp=2026-10-24T06:25:36.487, value=Ricardo Rivera
+ E0255 column=professional:designation, timestamp=2026-10-24T06:25:36.487, value=Software Engineer
+ E0255 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=57000
+ E0256 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Lima
+ E0256 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Daniela Gutierrez
+ E0256 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Software Engineer
+ E0256 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=45300
+ E0257 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Lima
+ E0257 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Camila Gutierrez
+ E0257 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Data Analyst
+ E0257 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=38900
+ E0258 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Santiago
+ E0258 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Carmen Rodriguez
+ E0258 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Administrative Assistant
+ E0258 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=23400
+ E0259 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Quito
+ E0259 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Valeria Morales
+ E0259 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Project Manager
+ E0259 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=66100
+ E0260 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=bogota
+ E0260 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Laura Diaz
+ E0260 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Data Analyst
+ E0260 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=42800
+ E0261 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Bogota
+ E0261 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Andres Martinez
+ E0261 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Data Analyst
+ E0261 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=40600
+ E0262 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Madrid
+ E0262 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Carlos Torres
+ E0262 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Software Engineer
+ E0262 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=59500
+ E0263 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Quito
+ E0263 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Diego Ruiz
+ E0263 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Administrative Assistant
+ E0263 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=22400
+ E0264 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Santiago
+ E0264 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Ana Medina
+ E0264 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Administrative Assistant
+ E0264 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=26800
+ E0265 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Quito
+ E0265 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Manuel Ortiz
+ E0265 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Project Manager
+ E0265 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=66000
+ E0266 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Quito
+ E0266 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Sofia Cruz
+ E0266 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Data Analyst
+ E0266 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=36000
+ E0267 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Bogota
+ E0267 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Ana Rivera
+ E0267 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Administrative Assistant
+ E0267 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=21000
+ E0268 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Bogota
+ E0268 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Carlos Vargas
+ E0268 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Data Scientist
+ E0268 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=53500
+ E0269 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Madrid
+ E0269 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Luis Cruz
+ E0269 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Data Analyst
+ E0269 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=57500
+ E0270 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Lima
+ E0270 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Paula Rodriguez
+ E0270 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Accountant
+ E0270 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=39600
+ E0271 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Santiago
+ E0271 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Ana Cruz
+ E0271 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Administrative Assistant
+ E0271 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=24300
+ E0272 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Bogota
+ E0272 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Laura Vega
+ E0272 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Data Scientist
+ E0272 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=60700
+ E0273 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Quito
+ E0273 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Camila Lopez
+ E0273 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Director
+ E0273 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=85600
+ E0274 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Santiago
+ E0274 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Sofia Silva
+ E0274 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Data Analyst
+ E0274 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=47600
+ E0275 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Lima
+ E0275 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Manuel Torres
+ E0275 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Project Manager
+ E0275 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=64800
+ E0276 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Santiago
+ E0276 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Manuel Aguilar
+ E0276 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Accountant
+ E0276 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=45700
+ E0277 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Quito
+ E0277 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Carmen Vega
+ E0277 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Data Scientist
+ E0277 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=55100
+ E0278 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Quito
+ E0278 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Miguel Castillo
+ E0278 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Data Scientist
+ E0278 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=45300
+ E0279 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Buenos Aires
+ E0279 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Lucia Silva
+ E0279 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Project Manager
+ E0279 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=66500
+ E0280 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Lima
+ E0280 column=personal:name, timestamp=2026-10-24T06:25:36.496, value=Isabel Mendoza
+ E0280 column=professional:designation, timestamp=2026-10-24T06:25:36.496, value=Data Scientist
+ E0280 column=professional:salary, timestamp=2026-10-24T06:25:36.496, value=49900
+ E0281 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Madrid
+ E0281 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Diego Cruz
+ E0281 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Data Analyst
+ E0281 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=52200
+ E0282 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Santiago
+ E0282 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Pedro Herrera
+ E0282 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Data Analyst
+ E0282 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=42300
+ E0283 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Madrid
+ E0283 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Carlos Perez
+ E0283 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Administrative Assistant
+ E0283 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=33400
+ E0284 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Buenos Aires
+ E0284 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Andres Vargas
+ E0284 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Data Analyst
+ E0284 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=35100
+ E0285 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Bogota
+ E0285 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Jorge Herrera
+ E0285 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Data Scientist
+ E0285 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=54300
+ E0286 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Santiago
+ E0286 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Elena Vargas
+ E0286 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Software Engineer
+ E0286 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=51300
+ E0287 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Santiago
+ E0287 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Sofia Diaz
+ E0287 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Administrative Assistant
+ E0287 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=24100
+ E0288 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Madrid
+ E0288 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Jorge Herrera
+ E0288 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Data Analyst
+ E0288 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=46400
+ E0289 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Lima
+ E0289 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Jose Reyes
+ E0289 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Software Engineer
+ E0290 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Buenos Aires
+ E0290 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Raul Ramirez
+ E0290 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Data Analyst
+ E0290 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=N/A
+ E0291 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Santiago
+ E0291 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Luis Diaz
+ E0291 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Accountant
+ E0291 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=45200
+ E0292 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Buenos Aires
+ E0292 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Natalia Martinez
+ E0292 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Data Analyst
+ E0292 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=34200
+ E0293 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Buenos Aires
+ E0293 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Raul Mendoza
+ E0293 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Administrative Assistant
+ E0293 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=24000
+ E0294 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Bogota
+ E0294 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Pedro Perez
+ E0294 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Data Analyst
+ E0294 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=31700
+ E0295 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Buenos Aires
+ E0295 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Natalia Gomez
+ E0295 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Data Scientist
+ E0295 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=67200
+ E0296 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Lima
+ E0296 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Ricardo Diaz
+ E0296 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Project Manager
+ E0296 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=61900
+ E0297 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Santiago
+ E0297 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Pedro Ramirez
+ E0297 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Software Engineer
+ E0298 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Bogota
+ E0298 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Ana Gutierrez
+ E0298 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Data Analyst
+ E0298 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=38000
+ E0299 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Santiago
+ E0299 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Isabel Aguilar
+ E0299 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Project Manager
+ E0299 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=73500
+ E0300 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Quito
+ E0300 column=personal:name, timestamp=2026-10-24T06:25:36.503, value=Miguel Sanchez
+ E0300 column=professional:designation, timestamp=2026-10-24T06:25:36.503, value=Data Analyst
+ E0300 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=31600
+300 row(s)
+Took 1.3207 seconds
+hbase:009:0> exit

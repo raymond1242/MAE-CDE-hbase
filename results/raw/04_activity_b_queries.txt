@@ -1,0 +1,238 @@
+hbase:001:0> # Activity B - What HBase can answer by itself.
+hbase:002:0> #
+hbase:003:0> # HBase stores and retrieves rows: it can filter and count on the server, but it
+hbase:004:0> # has no GROUP BY, AVG, MIN or MAX, and it compares raw bytes, not numbers or
+hbase:005:0> # normalized text. The final indicators are computed in Python (src/analyze.py).
+hbase:006:0> # These queries show both what HBase can do and where its limits are.
+hbase:007:0> #
+hbase:008:0> # Run from the repository root and keep the output as evidence:
+hbase:009:0> #   hbase shell -n hbase/04_activity_b_queries.hbase 2>/dev/null | tee results/raw/04_activity_b_queries.txt
+hbase:010:0> 
+hbase:011:0> # ---------------------------------------------------------------------------
+hbase:012:0> # Q1. Employees per city: one server-side filtered count per city.
+hbase:013:0> # The last two arguments (true, true) mean "skip rows without personal:city"
+hbase:014:0> # and "test only the latest version". Without the first one, rows with no
+hbase:015:0> # city would pass the filter and be counted for every city.
+hbase:016:0> # ---------------------------------------------------------------------------
+hbase:017:0> count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Lima', true, true)"}
+64 row(s)
+Took 0.5010 seconds
+=> 64
+hbase:018:0> count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Bogota', true, true)"}
+55 row(s)
+Took 0.0124 seconds
+=> 55
+hbase:019:0> count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Santiago', true, true)"}
+55 row(s)
+Took 0.0084 seconds
+=> 55
+hbase:020:0> count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Quito', true, true)"}
+45 row(s)
+Took 0.0085 seconds
+=> 45
+hbase:021:0> count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Buenos Aires', true, true)"}
+44 row(s)
+Took 0.0083 seconds
+=> 44
+hbase:022:0> count 'emp', {COLUMNS => ['personal:city'], FILTER => "SingleColumnValueFilter('personal', 'city', =, 'binary:Madrid', true, true)"}
+29 row(s)
+Took 0.0100 seconds
+=> 29
+hbase:023:0> 
+hbase:024:0> # Limitation 1: the comparison is exact, byte by byte, so 'LIMA' and ' lima '
+hbase:025:0> # were not counted as Lima above. A case-insensitive substring match finds them:
+hbase:026:0> scan 'emp', {COLUMNS => ['personal:city'], FILTER => "ValueFilter(=, 'substring:lima')"}
+ROW  COLUMN+CELL
+ E0004 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Lima
+ E0005 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Lima
+ E0022 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Lima
+ E0023 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Lima
+ E0026 column=personal:city, timestamp=2026-10-24T06:25:36.361, value=Lima
+ E0029 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=LIMA
+ E0032 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0033 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0035 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0039 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0040 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0044 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0046 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0047 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0050 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0052 column=personal:city, timestamp=2026-10-24T06:25:36.399, value=Lima
+ E0056 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0057 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0063 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0065 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0068 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0075 column=personal:city, timestamp=2026-10-24T06:25:36.411, value=Lima
+ E0080 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0081 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0084 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0088 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0089 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0096 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0098 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0101 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0103 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0105 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0107 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0109 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0112 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0114 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0122 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0124 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Lima
+ E0129 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Lima
+ E0132 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Lima
+ E0140 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Lima
+ E0141 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=LIMA
+ E0147 column=personal:city, timestamp=2026-10-24T06:25:36.444, value=Lima
+ E0154 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0157 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0161 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0163 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0173 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0174 column=personal:city, timestamp=2026-10-24T06:25:36.454, value=Lima
+ E0181 column=personal:city, timestamp=2026-10-24T06:25:36.464, value= lima 
+ E0192 column=personal:city, timestamp=2026-10-24T06:25:36.464, value=Lima
+ E0207 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Lima
+ E0213 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Lima
+ E0214 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Lima
+ E0221 column=personal:city, timestamp=2026-10-24T06:25:36.472, value=Lima
+ E0234 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Lima
+ E0240 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Lima
+ E0242 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Lima
+ E0252 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Lima
+ E0255 column=personal:city, timestamp=2026-10-24T06:25:36.487, value=Lima
+ E0256 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Lima
+ E0257 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Lima
+ E0270 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Lima
+ E0275 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Lima
+ E0280 column=personal:city, timestamp=2026-10-24T06:25:36.496, value=Lima
+ E0289 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Lima
+ E0296 column=personal:city, timestamp=2026-10-24T06:25:36.503, value=Lima
+67 row(s)
+Took 0.1412 seconds
+hbase:027:0> # Limitation 2: HBase cannot list the distinct cities; you must know them
+hbase:028:0> # beforehand or read the whole column and deduplicate it on the client.
+hbase:029:0> 
+hbase:030:0> # ---------------------------------------------------------------------------
+hbase:031:0> # Q2. Percentage per city: HBase does no arithmetic over results. It only gives
+hbase:032:0> # the total; percentage = count(city) / count(total) * 100 is done in Python.
+hbase:033:0> # ---------------------------------------------------------------------------
+hbase:034:0> count 'emp'
+300 row(s)
+Took 0.0156 seconds
+=> 300
+hbase:035:0> 
+hbase:036:0> # ---------------------------------------------------------------------------
+hbase:037:0> # Q3. Average, minimum and maximum salary: HBase only returns the raw values.
+hbase:038:0> # ---------------------------------------------------------------------------
+hbase:039:0> scan 'emp', {COLUMNS => ['professional:salary'], LIMIT => 10}
+ROW  COLUMN+CELL
+ E0001 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=33800
+ E0002 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=61300
+ E0003 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=34200
+ E0004 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=41600
+ E0005 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=25000
+ E0006 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=57100
+ E0007 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=58200
+ E0008 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=66700
+ E0009 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=98000
+ E0010 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=67800
+10 row(s)
+Took 0.0135 seconds
+hbase:040:0> 
+hbase:041:0> # Salaries are stored as text, so comparison filters are lexicographic, not
+hbase:042:0> # numeric. This "salary > 90000" filter also returns 'N/A' and 'pending'
+hbase:043:0> # (letters sort after digits) and misses values such as '105000' ('1' < '9').
+hbase:044:0> scan 'emp', {COLUMNS => ['professional:salary'], FILTER => "SingleColumnValueFilter('professional', 'salary', >, 'binary:90000', true, true)"}
+ROW  COLUMN+CELL
+ E0009 column=professional:salary, timestamp=2026-10-24T06:25:36.361, value=98000
+ E0031 column=professional:salary, timestamp=2026-10-24T06:25:36.399, value=91600
+ E0078 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=pending
+ E0162 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=pending
+ E0166 column=professional:salary, timestamp=2026-10-24T06:25:36.454, value=N/A
+ E0203 column=professional:salary, timestamp=2026-10-24T06:25:36.464, value=94200
+ E0230 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=N/A
+ E0243 column=professional:salary, timestamp=2026-10-24T06:25:36.487, value=91400
+ E0290 column=professional:salary, timestamp=2026-10-24T06:25:36.503, value=N/A
+9 row(s)
+Took 0.0148 seconds
+hbase:045:0> 
+hbase:046:0> # ---------------------------------------------------------------------------
+hbase:047:0> # Q4. Employees per designation: same approach as Q1.
+hbase:048:0> # ---------------------------------------------------------------------------
+hbase:049:0> count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Data Analyst', true, true)"}
+72 row(s)
+Took 0.0090 seconds
+=> 72
+hbase:050:0> count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Software Engineer', true, true)"}
+63 row(s)
+Took 0.0119 seconds
+=> 63
+hbase:051:0> count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Administrative Assistant', true, true)"}
+48 row(s)
+Took 0.0119 seconds
+=> 48
+hbase:052:0> count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Data Scientist', true, true)"}
+39 row(s)
+Took 0.0082 seconds
+=> 39
+hbase:053:0> count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Accountant', true, true)"}
+28 row(s)
+Took 0.0072 seconds
+=> 28
+hbase:054:0> count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Project Manager', true, true)"}
+33 row(s)
+Took 0.0085 seconds
+=> 33
+hbase:055:0> count 'emp', {COLUMNS => ['professional:designation'], FILTER => "SingleColumnValueFilter('professional', 'designation', =, 'binary:Director', true, true)"}
+15 row(s)
+Took 0.0068 seconds
+=> 15
+hbase:056:0> 
+hbase:057:0> # ---------------------------------------------------------------------------
+hbase:058:0> # Q5. City with the highest average salary: needs numeric conversion, grouping
+hbase:059:0> # and averaging, none of which the shell offers. (HBase's
+hbase:060:0> # AggregateImplementation coprocessor can only sum/average cells encoded as
+hbase:061:0> # 8-byte longs, not numbers stored as text.) Computed in Python.
+hbase:062:0> # ---------------------------------------------------------------------------
+hbase:063:0> 
+hbase:064:0> # ---------------------------------------------------------------------------
+hbase:065:0> # get vs scan (conceptual question 2).
+hbase:066:0> # get: one known row, located directly by its key.
+hbase:067:0> get 'emp', 'E0042'
+COLUMN  CELL
+ personal:city timestamp=2026-10-24T06:25:36.399, value=Quito
+ personal:name timestamp=2026-10-24T06:25:36.399, value=Natalia Navarro
+ professional:designation timestamp=2026-10-24T06:25:36.399, value=Data Analyst
+ professional:salary timestamp=2026-10-24T06:25:36.399, value=32000
+1 row(s)
+Took 0.0406 seconds
+hbase:068:0> # scan: a range of rows. Row keys are sorted, so STARTROW/STOPROW only reads
+hbase:069:0> # the rows in [E0100, E0105) instead of the whole table.
+hbase:070:0> scan 'emp', {STARTROW => 'E0100', STOPROW => 'E0105'}
+ROW  COLUMN+CELL
+ E0100 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Santiago
+ E0100 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Lucia Vargas
+ E0100 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Project Manager
+ E0100 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=85300
+ E0101 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0101 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Pedro Martinez
+ E0101 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Administrative Assistant
+ E0101 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=23700
+ E0102 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Buenos Aires
+ E0102 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Sofia Medina
+ E0102 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Accountant
+ E0102 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=39200
+ E0103 column=personal:city, timestamp=2026-10-24T06:25:36.422, value=Lima
+ E0103 column=personal:name, timestamp=2026-10-24T06:25:36.422, value=Gabriela Ruiz
+ E0103 column=professional:designation, timestamp=2026-10-24T06:25:36.422, value=Data Analyst
+ E0103 column=professional:salary, timestamp=2026-10-24T06:25:36.422, value=36200
+ E0104 column=personal:city, timestamp=2026-10-24T06:25:36.434, value=Buenos Aires
+ E0104 column=personal:name, timestamp=2026-10-24T06:25:36.434, value=Javier Chavez
+ E0104 column=professional:designation, timestamp=2026-10-24T06:25:36.434, value=Data Analyst
+ E0104 column=professional:salary, timestamp=2026-10-24T06:25:36.434, value=39700
+5 row(s)
+Took 0.0364 seconds
+hbase:071:0> exit

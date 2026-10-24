@@ -1,0 +1,11 @@
+metric,value
+total_records,300
+missing_salaries,8
+invalid_salaries,8
+fixed_salaries,2
+valid_salaries,284
+avg_salary,48647.18
+min_salary,18000.00
+max_salary,129000.00
+median_salary,45600.00
+stdev_salary,18578.62

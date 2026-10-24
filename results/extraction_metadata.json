@@ -1,0 +1,19 @@
+{
+  "method": "thrift (happybase)",
+  "server": "localhost:9090",
+  "transport": "buffered/binary",
+  "table": "emp",
+  "table_families": [
+    "personal",
+    "professional"
+  ],
+  "requested_columns": [
+    "personal:name",
+    "personal:city",
+    "professional:designation",
+    "professional:salary"
+  ],
+  "rows_read": 300,
+  "extracted_at": "2026-10-24T06:32:20+00:00",
+  "python": "3.9.25"
+}

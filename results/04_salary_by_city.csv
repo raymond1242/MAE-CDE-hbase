@@ -1,0 +1,8 @@
+rank,city,employees,valid_salaries,avg_salary,min_salary,max_salary,meets_minimum
+1,Madrid,29,26,57676.92,29300.00,129000.00,true
+2,Santiago,56,54,51181.48,21800.00,106700.00,true
+3,Lima,67,63,50506.35,19900.00,100600.00,true
+4,Buenos Aires,44,42,46657.14,19500.00,81000.00,true
+5,Bogota,56,53,46628.30,18400.00,94200.00,true
+6,Quito,45,43,41472.09,18000.00,85600.00,true
+,UNKNOWN,3,3,52100.00,41200.00,59500.00,false

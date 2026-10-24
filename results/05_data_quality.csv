@@ -1,0 +1,29 @@
+row_key,field,original_value,problem,treatment
+E0020,designation,,missing value,grouped as UNKNOWN
+E0029,city,LIMA,inconsistent case/whitespace,normalized to 'Lima'
+E0030,designation,,missing value,grouped as UNKNOWN
+E0035,salary,-67400,not positive,excluded from salary statistics
+E0038,city,Santiago ,inconsistent case/whitespace,normalized to 'Santiago'
+E0039,salary,,cell professional:salary does not exist,excluded from salary statistics
+E0078,salary,pending,not a number,excluded from salary statistics
+E0079,salary,,cell professional:salary does not exist,excluded from salary statistics
+E0089,salary,,cell professional:salary does not exist,excluded from salary statistics
+E0091,salary,,cell professional:salary does not exist,excluded from salary statistics
+E0141,city,LIMA,inconsistent case/whitespace,normalized to 'Lima'
+E0156,salary, 42200 ,surrounding whitespace removed,numeric value used
+E0159,city,,missing value,grouped as UNKNOWN
+E0162,salary,pending,not a number,excluded from salary statistics
+E0166,salary,N/A,not a number,excluded from salary statistics
+E0181,city, lima ,inconsistent case/whitespace,normalized to 'Lima'
+E0226,salary,-50200,not positive,excluded from salary statistics
+E0227,salary, 34900 ,surrounding whitespace removed,numeric value used
+E0230,salary,N/A,not a number,excluded from salary statistics
+E0232,city,,missing value,grouped as UNKNOWN
+E0237,city,,missing value,grouped as UNKNOWN
+E0238,salary,,cell professional:salary does not exist,excluded from salary statistics
+E0241,salary,0,not positive,excluded from salary statistics
+E0253,salary,,cell professional:salary does not exist,excluded from salary statistics
+E0260,city,bogota,inconsistent case/whitespace,normalized to 'Bogota'
+E0289,salary,,cell professional:salary does not exist,excluded from salary statistics
+E0290,salary,N/A,not a number,excluded from salary statistics
+E0297,salary,,cell professional:salary does not exist,excluded from salary statistics

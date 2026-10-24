@@ -1,0 +1,3 @@
+# Python client for HBase through the Thrift server.
+happybase==1.2.0
+thriftpy2==0.7.1

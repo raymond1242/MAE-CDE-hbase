@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Generated HBase shell load script (rebuilt from data/employees.csv)
+hbase/generated/
+
+# AWS: never commit key pairs
+*.pem
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/

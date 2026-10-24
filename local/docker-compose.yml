@@ -1,0 +1,13 @@
+services:
+  hbase:
+    build: .
+    container_name: hbase-local
+    hostname: hbase-local
+    ports:
+      - "127.0.0.1:9090:9090"
+      - "127.0.0.1:16010:16010"
+    volumes:
+      - hbase-data:/data
+      - ..:/repo
+volumes:
+  hbase-data:
